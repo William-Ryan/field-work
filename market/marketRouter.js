@@ -80,6 +80,17 @@ router.delete('/items/:id', (req, res) => {
     })
 })
 
+router.get('/users', (req, res) => {
+
+    User.findAll()
+    .then(users => {
+        res.status(200).json(users)
+    })
+    .catch(() => {
+        res.status(500).json({ message: 'Error Retrieving Items' })
+    })
+})
+
 router.get('/users/:id', (req, res) => {
     id = req.params.id
 
@@ -103,7 +114,7 @@ router.put('/users/:id', (req, res) => {
     User.findById(id)
     .then(user => {
         if (user){
-            Item.update(changes, id)
+            User.update(changes, id)
             .then(updatedUser => {
                 res.status(200).json(updatedUser)
             });

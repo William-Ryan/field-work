@@ -2,13 +2,15 @@ const db = require('../data/dbConfig.js');
 
 module.exports = {
   add,
-  find,
+  findAll,
   findBy,
   findById,
-};
+  update,
+  remove
+}
 
-function find() {
-  return db('users').select('id', 'username', 'password');
+function findAll(){
+  return db('users')
 }
 
 function findBy(filter) {
@@ -25,4 +27,16 @@ function findById(id) {
   return db('users')
     .where({ id })
     .first();
+}
+
+function update(changes, id){
+  return db('users')
+      .update(changes)
+      .where({ id })
+}
+
+function remove(id){
+  return db('users')
+      .where({ id })
+      .del()
 }
