@@ -5,8 +5,7 @@ module.exports = {
     findById,
     add,
     update,
-    remove,
-    findUserItem
+    remove
 }
 
 function findAll(){
@@ -16,12 +15,10 @@ function findAll(){
 }
 
 function findById(id) {
-    return db('items')
+    return db('items as i')
         .where({ id })
         .first()
 }
-
-function findUserItem(){}
 
 function add(data){
     return db('items')
